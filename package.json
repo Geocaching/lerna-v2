@@ -1,4 +1,9 @@
 {
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "dependencies": {
     "lerna": "^8.2.3"
   }
