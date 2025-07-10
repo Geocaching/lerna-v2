@@ -1,0 +1,9 @@
+{
+  "version": "0.0.0",
+  "npmClient": "bun",
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*",
+    "apps/*"
+  ]
+}
