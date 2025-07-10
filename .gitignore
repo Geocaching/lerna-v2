@@ -1,0 +1,41 @@
+# JetBrains IDEs
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+
+# Mac system files
+.DS_Store
+
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm/
+.package-lock.json
+yarn.lock
+
+# Bun
+bunfig.toml
+.bun/
+bun-debug.log*
