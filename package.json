@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "lint": "lerna run lint",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "test": "jest"
   },
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,json}": "prettier --write",
@@ -19,9 +20,12 @@
   },
   "devDependencies": {
     "@brandontom/prettier": "^2.0.0",
+    "@types/jest": "^29",
     "husky": "^9.1.7",
+    "jest": "^29",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "sort-package-json": "^3.4.0"
+    "sort-package-json": "^3.4.0",
+    "ts-jest": "^29.4.0"
   }
 }
