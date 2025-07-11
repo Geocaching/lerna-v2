@@ -43,3 +43,10 @@ Please keep this documentation organized by categories (UI components, API inter
 ### Known Issues
 
 <!-- Add documented issues below this line following the example format -->
+### Issue: Root lint script fails due to deprecated Lerna option
+
+- **Location**: package.json (root scripts) and lerna.json (lines 1-10)
+- **Context**: Running `bun run lint` at repository root
+- **Problem**: Lerna exits with `ECONFIGWORKSPACES` because the `useWorkspaces` option has been removed
+- **Solution**: Execute `bun run lint` within each workspace (e.g. `apps/web`) until lerna configuration is updated
+- **Prevention**: Remove `useWorkspaces` from `lerna.json` or pin a compatible Lerna version
