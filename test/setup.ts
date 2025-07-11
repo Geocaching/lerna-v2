@@ -12,3 +12,13 @@ for (const key of Object.getOwnPropertyNames(dom.window)) {
     ;(globalThis as any)[key] = (dom.window as any)[key]
   }
 }
+
+if (!(globalThis as any).ResizeObserver) {
+  const Polyfill = class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+  ;(globalThis as any).ResizeObserver = Polyfill
+  ;(globalThis as any).window.ResizeObserver = Polyfill
+}
