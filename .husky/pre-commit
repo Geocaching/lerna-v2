@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname "$0")/common.sh"
 
+bun run test
 bun x lint-staged
