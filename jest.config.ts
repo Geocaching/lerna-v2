@@ -5,7 +5,7 @@ const config: Config = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '\\.(css)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|webp|svg|glb)$': 'identity-obj-proxy'
+    '\\.(jpg|jpeg|png|gif|webp|svg|glb)$': '<rootDir>/__mocks__/fileMock.ts'
   },
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }]
