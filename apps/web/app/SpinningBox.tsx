@@ -1,10 +1,10 @@
 'use client'
 import { useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
+import type { Mesh } from 'three'
 import { useRef } from 'react'
 
 const SpinningBox = () => {
-  const ref = useRef<THREE.Mesh>(null!)
+  const ref = useRef<Mesh>(null!)
   useFrame(() => {
     if (ref.current) {
       ref.current.rotation.x += 0.01
