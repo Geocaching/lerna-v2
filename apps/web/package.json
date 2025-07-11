@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-three/drei": "^10.5.0",
     "@react-three/fiber": "^9.2.0",
     "babel-plugin-react-compiler": "^19.1.0-rc.2",
     "next": "15.3.5",
