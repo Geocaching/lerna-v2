@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "lint": "lerna run lint",
-    "prepare": "husky install"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "lerna": "^8.2.3"
