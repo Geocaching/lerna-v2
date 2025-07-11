@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { JSDOM } from 'jsdom'
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
@@ -32,7 +34,7 @@ if (!(globalThis as any).HTMLCanvasElement.prototype.getContext) {
       return {
         fillRect: () => {},
         clearRect: () => {},
-        getImageData: (x: number, y: number, w: number, h: number) => ({
+        getImageData: (_x: number, _y: number, w: number, h: number) => ({
           data: new Array(w * h * 4)
         }),
         putImageData: () => {},
