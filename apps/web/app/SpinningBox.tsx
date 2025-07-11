@@ -12,7 +12,7 @@ const SpinningBox = () => {
     }
   })
   return (
-    <mesh ref={ref} data-testid='spinning-box'>
+    <mesh ref={ref}>
       <boxGeometry args={[1, 1, 1]} />
       <meshNormalMaterial />
     </mesh>
