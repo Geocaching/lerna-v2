@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 // Polyfill ReactDOM.render for React 18+/19 so @testing-library/react-hooks works
 if (!(ReactDOM as any).render) {
-  const { createRoot } = require('react-dom/client')
   ;(ReactDOM as any).render = (
     element: React.ReactElement,
     container: Element
