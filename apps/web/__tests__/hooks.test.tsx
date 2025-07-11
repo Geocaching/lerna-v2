@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderHook, act } from '@testing-library/react-hooks'
+import { renderHook, act } from '@testing-library/react'
 
 function useCounter(initial: number = 0) {
   const [count, setCount] = React.useState(initial)
