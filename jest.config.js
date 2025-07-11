@@ -3,8 +3,8 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '\\.(css)$': '<rootDir>/__mocks__/styleMock.js',
-    '\\.(jpg|jpeg|png|gif|webp|svg|glb)$': '<rootDir>/__mocks__/fileMock.js'
+    '\\.(css)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|webp|svg|glb)$': 'identity-obj-proxy'
   },
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }]
