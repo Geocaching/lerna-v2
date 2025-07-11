@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom'
 
-const dom = new JSDOM('<!doctype html><html><body></body></html>', {
+const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
   url: 'http://localhost'
 })
 
