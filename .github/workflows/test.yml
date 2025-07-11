@@ -12,5 +12,10 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      - uses: actions/cache@v3
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: ${{ runner.os }}-bun-
       - run: bun install
       - run: bun run test
