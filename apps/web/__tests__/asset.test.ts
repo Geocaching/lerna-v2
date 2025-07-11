@@ -1,5 +1,8 @@
-import logo from '../public/vercel.svg'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
-test('mocks binary assets', () => {
-  expect(logo).toBe('test-file-stub')
+test('loads svg asset', () => {
+  const file = join(__dirname, '../public/vercel.svg')
+  const contents = readFileSync(file, 'utf8')
+  expect(contents.startsWith('<svg')).toBe(true)
 })
