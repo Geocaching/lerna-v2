@@ -1,6 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { JSDOM } from 'jsdom'
+import '@testing-library/jest-dom'
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
   url: 'http://localhost'
