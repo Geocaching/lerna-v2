@@ -4,5 +4,5 @@ import { PerseverancePromo } from '@/promos/perseverance/page'
 
 test('renders Hello, world! text', () => {
   render(<PerseverancePromo />)
-  expect(screen.getByTestId('rover-explorer')).toBeTruthy()
+  expect(screen.getByTestId('rover-explorer')).toBeInTheDocument()
 })
