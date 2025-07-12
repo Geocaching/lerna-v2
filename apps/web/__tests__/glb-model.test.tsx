@@ -13,7 +13,11 @@ test('renders canvas with GLB model', async () => {
 
   const { container } = render(
     <Canvas>
-      <GlbModel url='/3d-models/rover/rover-body.glb' />
+      <GlbModel
+        url='/3d-models/rover/rover-body.glb'
+        position={[1, 2, 3]}
+        scale={2}
+      />
     </Canvas>
   )
 
