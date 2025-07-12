@@ -45,4 +45,9 @@ Please keep this documentation organized by categories (UI components, API inter
 ### Known Issues
 
 <!-- Add documented issues below this line following the example format -->
-<!-- No current issues -->
+### Issue: jest.mock unsupported with bun test
+- **Location**: apps/web/__tests__/glb-model.test.tsx
+- **Context**: Trying to mock "@react-three/drei" using jest.mock
+- **Problem**: bun's test environment does not implement jest.mock
+- **Solution**: Use `mock.module` from `bun:test` and import modules after setting the mock
+- **Prevention**: Prefer `mock.module` for module mocking in bun tests
