@@ -1,0 +1,11 @@
+[production]
+>0.25% in US
+>0.25% in DE
+>0.25% in CN
+last 2 versions
+not dead
+
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 safari version
