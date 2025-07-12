@@ -11,6 +11,9 @@ const useCounterStore = create<CounterState>(set => ({
   increment: () => set(state => ({ count: state.count + 1 }))
 }))
 
+afterEach(() => {
+  useCounterStore.setState({ count: 0 })
+})
 test('zustand store increments', () => {
   act(() => {
     useCounterStore.getState().increment()
