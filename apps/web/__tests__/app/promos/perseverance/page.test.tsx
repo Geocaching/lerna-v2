@@ -1,7 +1,3 @@
-import { render, screen } from '@testing-library/react'
-import React from 'react'
-import PerseverancePromo from '../../../../app/promos/perseverance/page'
-
 jest.mock('@react-three/drei', () => {
   const React = require('react')
   const { Group } = require('three')
@@ -23,6 +19,10 @@ jest.mock('@react-three/drei/core/Sky', () => ({
 jest.mock('@react-three/drei/core/Stars', () => ({
   Stars: () => null
 }))
+
+import { render, screen } from '@testing-library/react'
+import React from 'react'
+import PerseverancePromo from '../../../../app/promos/perseverance/page'
 
 test('renders promo canvas', () => {
   const { container } = render(<PerseverancePromo />)
