@@ -1,9 +1,10 @@
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
+import path from 'path'
 
 export default {
-  input: 'src/index.tsx',
+  input: './src/index.tsx',
   output: [
     {
       file: 'dist/index.esm.js',
@@ -17,6 +18,6 @@ export default {
       exports: 'named'
     }
   ],
-  external: id => !id.startsWith('.') && !id.startsWith('/'),
+  external: id => !id.startsWith('.') && !path.isAbsolute(id),
   plugins: [typescript(), nodeResolve(), commonjs()]
 }
