@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "lerna run lint",
     "prepare": "husky || true",
-    "test": "jest"
+    "test": "jest --config jest.config.ts"
   },
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,json}": "prettier --write",
