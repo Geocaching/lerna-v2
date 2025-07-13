@@ -21,6 +21,7 @@
     "types": ["bun", "jest", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./*"],
+      "@/app/*": ["./app/*"],
       "@/promos/*": ["./app/promos/*"]
     }
   },
