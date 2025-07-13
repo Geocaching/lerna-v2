@@ -1,11 +1,14 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { JSDOM } from 'jsdom'
 import '@testing-library/jest-dom'
-import { expect } from 'bun:test'
-import * as matchers from '@testing-library/jest-dom/matchers'
 
-expect.extend(matchers)
+// jsdom requires TextEncoder/TextDecoder in global scope before importing jsdom
+;(globalThis as any).TextEncoder =
+  (globalThis as any).TextEncoder || require('util').TextEncoder
+;(globalThis as any).TextDecoder =
+  (globalThis as any).TextDecoder || require('util').TextDecoder
+
+const { JSDOM } = require('jsdom')
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
   url: 'http://localhost'
