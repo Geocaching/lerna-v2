@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react'
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
+// bun:test exposes a Jest-like API so jest.fn can be used here
 import { mock, jest, test, expect } from 'bun:test'
 import { Group } from 'three'
 
