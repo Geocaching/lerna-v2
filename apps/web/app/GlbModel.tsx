@@ -1,5 +1,5 @@
 'use client'
-import { useGLTF } from '@react-three/drei'
+import { Html, useGLTF } from '@react-three/drei'
 import { Group, Object3D, Material } from 'three'
 import { useLayoutEffect } from 'react'
 import React from 'react'
@@ -35,6 +35,10 @@ interface GlbModelProps {
    * @default false
    */
   receiveShadow?: boolean
+  /**
+   * Optional HTML content to render within the model using drei's Html component
+   */
+  htmlContent?: React.ReactNode
   /**
    * Rotation of the model in radians as [x, y, z] Euler angles
    * @default [0, 0, 0]
@@ -138,6 +142,7 @@ const GlbModelInner = ({
   castShadow = false,
   receiveShadow = false,
   opacity = 1.0,
+  htmlContent,
   onLoad
 }: Omit<GlbModelProps, 'onError'>) => {
   const { scene } = useGLTF(url)
@@ -172,6 +177,7 @@ const GlbModelInner = ({
   return (
     <group position={position} rotation={rotation} scale={scale}>
       <primitive object={scene as Group} />
+      {htmlContent && <Html>{htmlContent}</Html>}
     </group>
   )
 }
