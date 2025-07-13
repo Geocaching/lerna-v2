@@ -82,10 +82,13 @@ const GlbModelInner = ({
   )
 }
 
-const GlbModel = (props: GlbModelProps) => (
-  <ModelErrorBoundary onError={props.onError}>
-    <GlbModelInner {...props} />
-  </ModelErrorBoundary>
-)
+const GlbModel = (props: GlbModelProps) => {
+  const { onError, ...innerProps } = props;
+  return (
+    <ModelErrorBoundary onError={onError}>
+      <GlbModelInner {...innerProps} />
+    </ModelErrorBoundary>
+  );
+};
 
 export default GlbModel
