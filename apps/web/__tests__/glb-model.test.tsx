@@ -4,12 +4,13 @@ import { Canvas } from '@react-three/fiber'
 import { mock, test, expect } from 'bun:test'
 import { Group } from 'three'
 
-mock('@react-three/drei', {
-  useGLTF: () => ({ scene: new Group() })
-})
-
 test('renders canvas with GLB model', async () => {
-  const { default: GlbModel } = await import('../app/GlbModel')
+  mock.module('@react-three/drei', () => ({
+    useGLTF: () => ({ scene: new Group() })
+  }))
+  const { default: GlbModel } = await import(
+    `../app/GlbModel?test=${Math.random()}`
+  )
 
   const { container } = render(
     <Canvas>

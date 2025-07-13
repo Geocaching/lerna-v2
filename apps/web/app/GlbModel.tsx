@@ -1,7 +1,8 @@
 'use client'
 import { useGLTF } from '@react-three/drei'
 import { Group, Object3D } from 'three'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
+import React from 'react'
 
 interface GlbModelProps {
   /**
@@ -30,23 +31,44 @@ interface GlbModelProps {
   onError?: (error: unknown) => void
 }
 
-const GlbModel = ({
+class ModelErrorBoundary extends React.Component<
+  { onError?: (error: unknown) => void; children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: {
+    onError?: (error: unknown) => void
+    children: React.ReactNode
+  }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: unknown) {
+    this.props.onError?.(error)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null
+    }
+    return this.props.children
+  }
+}
+
+const GlbModelInner = ({
   url,
   position = [0, 0, 0],
   scale = 1,
   castShadow = false,
-  onLoad,
-  onError
-}: GlbModelProps) => {
-  let scene: Group
-  try {
-    ;({ scene } = useGLTF(url))
-  } catch (err) {
-    onError?.(err)
-    throw err
-  }
+  onLoad
+}: Omit<GlbModelProps, 'onError'>) => {
+  const { scene } = useGLTF(url)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     scene.traverse(obj => {
       ;(obj as Object3D).castShadow = castShadow
     })
@@ -59,5 +81,11 @@ const GlbModel = ({
     </group>
   )
 }
+
+const GlbModel = (props: GlbModelProps) => (
+  <ModelErrorBoundary onError={props.onError}>
+    <GlbModelInner {...props} />
+  </ModelErrorBoundary>
+)
 
 export default GlbModel
