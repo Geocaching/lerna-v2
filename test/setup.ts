@@ -2,12 +2,26 @@
 
 import '@testing-library/jest-dom'
 
-beforeAll(() => {
-  jest.spyOn(console, 'error').mockImplementation(() => {})
+let errorSpy: jest.SpyInstance | undefined
+let originalError: typeof console.error
+
+beforeEach(() => {
+  originalError = console.error
+  errorSpy = jest.spyOn(console, 'error').mockImplementation((...args) => {
+    const [first, second] = args
+    const text = String(first)
+    if (
+      text.includes('The tag <%s> is unrecognized') &&
+      (second === 'primitive' || second === 'group')
+    ) {
+      return
+    }
+    originalError(...args)
+  })
 })
 
-afterAll(() => {
-  ;(console.error as jest.Mock).mockRestore()
+afterEach(() => {
+  errorSpy?.mockRestore()
 })
 
 // jsdom requires TextEncoder/TextDecoder in a global scope before importing jsdom

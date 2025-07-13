@@ -53,7 +53,9 @@ Please keep this documentation organized by categories (UI components, API inter
 - **Context**: Running Jest tests with a mocked Canvas from `@react-three/fiber`
 - **Problem**: JSX tags `<group>` and `<primitive>` triggered console errors
   because they were treated as unknown DOM elements when rendered in tests.
-- **Solution**: Mock `console.error` in `test/setup.ts` to silence these
-  warnings, preventing noisy test output.
+- **Solution**: Mock `console.error` in `test/setup.ts` during each test and
+  restore it afterward, filtering only the specific warnings about `<group>` and
+  `<primitive>` so legitimate errors still surface.
 - **Prevention**: When mocking `@react-three/fiber` components, also suppress or
-  handle logs from custom JSX tags to keep test output clean.
+  handle logs from custom JSX tags to keep test output clean without hiding real
+  issues.
