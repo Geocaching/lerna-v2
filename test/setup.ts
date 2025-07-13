@@ -7,17 +7,14 @@ let originalError: typeof console.error
 
 beforeEach(() => {
   originalError = console.error
+  const WARNING_PATTERN = /The tag <.*> is unrecognized.*(primitive|group)/;
   errorSpy = jest.spyOn(console, 'error').mockImplementation((...args) => {
-    const [first, second] = args
-    const text = String(first)
-    if (
-      text.includes('The tag <%s> is unrecognized') &&
-      (second === 'primitive' || second === 'group')
-    ) {
-      return
+    const message = `${args[0]} ${args[1]}`;
+    if (WARNING_PATTERN.test(message)) {
+      return;
     }
-    originalError(...args)
-  })
+    originalError(...args);
+  });
 })
 
 afterEach(() => {
