@@ -1,13 +1,12 @@
 'use client'
-
 import { Stars, SpotLight } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
-
-export const dynamic = 'force-static'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import GlbModel from '@/app/GlbModel'
 import { Sky } from '@react-three/drei/core/Sky'
+
+export const dynamic = 'force-static'
 
 export const PerseverancePromo = () => (
   <div
