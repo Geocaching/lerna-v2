@@ -6,35 +6,67 @@ import React from 'react'
 
 interface GlbModelProps {
   /**
+   * Enable or disable shadow casting for all meshes in the model
+   * @default false
+   */
+  castShadow?: boolean
+  /**
+   * Called if an error occurs while loading the model
+   * @param error - The error that occurred during model loading
+   */
+  onError?: (error: unknown) => void
+  /**
+   * Called after the model successfully loads,
+   * Uses this to perform actions once the model is ready in the scene
+   */
+  onLoad?: () => void
+  /**
+   * Position of the model in the scene as [x, y, z] coordinates
+   * @default [0, 0, 0]
+   */
+  position?: [number, number, number]
+  /**
+   * Rotation of the model in radians as [x, y, z] Euler angles
+   * @default [0, 0, 0]
+   */
+  rotation?: [number, number, number]
+  /**
+   * Uniform scale factor for the model
+   * @default 1
+   */
+  scale?: number
+  /**
    * Path to the .glb file relative to the public directory
    */
   url: string
   /**
-   * Position of the model in the scene
+   * Opacity of the model (0.0 to 1.0)
+   * @default 1.0
    */
-  position?: [number, number, number]
-  /**
-   * Uniform scale factor for the model
-   */
-  scale?: number
-  /**
-   * Enable or disable shadow casting for all meshes in the model
-   */
-  castShadow?: boolean
-  /**
-   * Called after the model successfully loads
-   */
-  onLoad?: () => void
-  /**
-   * Called if an error occurs while loading the model
-   */
-  onError?: (error: unknown) => void
+  opacity?: number
 }
 
+/**
+ * Error boundary component that catches errors during model loading
+ * and rendering, preventing the entire application from crashing
+ *
+ * @component
+ * @example
+ * <ModelErrorBoundary onError={(e) => console.error(e)}>
+ *   <YourModelComponent />
+ * </ModelErrorBoundary>
+ */
 class ModelErrorBoundary extends React.Component<
   { onError?: (error: unknown) => void; children: React.ReactNode },
   { hasError: boolean }
 > {
+  /**
+   * Initialize the error boundary component
+   *
+   * @param props - Component props
+   * @param props.onError - Optional callback function for error handling
+   * @param props.children - React components to be rendered inside the error boundary
+   */
   constructor(props: {
     onError?: (error: unknown) => void
     children: React.ReactNode
@@ -43,14 +75,31 @@ class ModelErrorBoundary extends React.Component<
     this.state = { hasError: false }
   }
 
+  /**
+   * Static lifecycle method called when an error occurs during rendering
+   * Updates component state to indicate an error has occurred
+   *
+   * @returns New state object with hasError set to true
+   */
   static getDerivedStateFromError() {
     return { hasError: true }
   }
 
+  /**
+   * Lifecycle method called after an error has been caught
+   * Invokes the onError callback if provided
+   *
+   * @param error - The error that was caught
+   */
   componentDidCatch(error: unknown) {
     this.props.onError?.(error)
   }
 
+  /**
+   * Renders children if no error occurred, otherwise renders null
+   *
+   * @returns React node to be rendered
+   */
   render() {
     if (this.state.hasError) {
       return null
@@ -59,36 +108,93 @@ class ModelErrorBoundary extends React.Component<
   }
 }
 
+/**
+ * Inner component that handles the actual rendering of the GLB model
+ * Separated from the main element to facilitate error boundary wrapping
+ *
+ * @component
+ * @private
+ * @param props - Component properties excluding onError (handled by error boundary)
+ * @param props.url - Path to the GLB model file
+ * @param props.position - 3D position of the model [x, y, z]
+ * @param props.rotation - 3D rotation of the model in radians [x, y, z]
+ * @param props.scale - Uniform scale factor for the model
+ * @param props.castShadow - Whether the model should cast shadows
+ * @param props.opacity - Opacity of the model (0.0 to 1.0)
+ * @param props.onLoad - Callback function invoked after successful model loading
+ * @returns React component that renders the 3D model
+ */
 const GlbModelInner = ({
   url,
   position = [0, 0, 0],
+  rotation = [0, 0, 0],
   scale = 1,
   castShadow = false,
+  opacity = 1.0,
   onLoad
 }: Omit<GlbModelProps, 'onError'>) => {
   const { scene } = useGLTF(url)
 
   useLayoutEffect(() => {
     scene.traverse(obj => {
+      // Apply shadow casting
       ;(obj as Object3D).castShadow = castShadow
+
+      // Apply opacity if provided and the object has a material
+      const object = obj as any
+      if (object.material && opacity !== 1.0) {
+        // If a material is an array, handle each material
+        if (Array.isArray(object.material)) {
+          object.material.forEach((mat: any) => {
+            mat.transparent = opacity < 1.0
+            mat.opacity = opacity
+          })
+        } else {
+          // Handle single material
+          object.material.transparent = opacity < 1.0
+          object.material.opacity = opacity
+        }
+      }
     })
     onLoad?.()
-  }, [scene, castShadow, onLoad])
+  }, [scene, castShadow, opacity, onLoad])
 
   return (
-    <group position={position} scale={scale}>
+    <group position={position} rotation={rotation} scale={scale}>
       <primitive object={scene as Group} />
     </group>
   )
 }
 
+/**
+ * Component for rendering 3D GLB models in a React Three Fiber scene
+ * Wraps the inner component with an error boundary for graceful error handling
+ *
+ * @component
+ * @example
+ * // Basic usage
+ * <GlbModel url="/3d-models/rover/rover-body.glb" />
+ *
+ * // With all props
+ * <GlbModel
+ *   url="/3d-models/rover/rover-body.glb"
+ *   position={[1, 0, 2]}
+ *   scale={0.5}
+ *   castShadow={true}
+ *   onLoad={() => console.log("Model loaded")}
+ *   onError={(e) => console.error("Model failed to load", e)}
+ * />
+ *
+ * @param props - Component properties
+ * @returns React component that renders the 3D GLB model with error handling
+ */
 const GlbModel = (props: GlbModelProps) => {
-  const { onError, ...innerProps } = props;
+  const { onError, ...innerProps } = props
   return (
     <ModelErrorBoundary onError={onError}>
       <GlbModelInner {...innerProps} />
     </ModelErrorBoundary>
-  );
-};
+  )
+}
 
 export default GlbModel
