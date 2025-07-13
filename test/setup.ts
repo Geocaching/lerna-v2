@@ -2,6 +2,14 @@
 
 import '@testing-library/jest-dom'
 
+beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  ;(console.error as jest.Mock).mockRestore()
+})
+
 // jsdom requires TextEncoder/TextDecoder in a global scope before importing jsdom
 ;(globalThis as any).TextEncoder =
   (globalThis as any).TextEncoder || require('util').TextEncoder
