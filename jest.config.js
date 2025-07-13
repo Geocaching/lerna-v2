@@ -7,6 +7,7 @@ module.exports = {
     '^.+\\.tsx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.jest.json' }]
   },
   moduleNameMapper: {
+    '^@/app/(.*)$': '<rootDir>/apps/web/app/$1',
     '^@/(.*)$': '<rootDir>/apps/web/$1'
   }
 }
