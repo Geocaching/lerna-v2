@@ -17,6 +17,9 @@ test('renders promo canvas', async () => {
   mock.module('@react-three/drei/core/Sky', () => ({
     Sky: () => null
   }))
+  mock.module('@react-three/drei/core/Stars', () => ({
+    Stars: () => null
+  }))
   const { PerseverancePromo } = await import(
     '../../../../app/promos/perseverance/page?test=' + Math.random()
   )
