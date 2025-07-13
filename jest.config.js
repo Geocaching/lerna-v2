@@ -8,6 +8,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '^@/app/(.*)$': '<rootDir>/apps/web/app/$1',
-    '^@/(.*)$': '<rootDir>/apps/web/$1'
+    '^@/(.*)$': '<rootDir>/apps/web/$1',
+    '^@geocaching/glb-model$': '<rootDir>/packages/glb-model/src'
   }
 }

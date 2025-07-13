@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
-      "@/promos/*": ["./app/promos/*"]
+      "@/promos/*": ["./app/promos/*"],
+      "@geocaching/glb-model": ["../../packages/glb-model/src"]
     }
   },
   "include": [
