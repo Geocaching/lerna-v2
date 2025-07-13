@@ -1,6 +1,6 @@
 'use client'
 import { useGLTF } from '@react-three/drei'
-import { Group, Object3D } from 'three'
+import { Group, Object3D, Material } from 'three'
 import { useLayoutEffect } from 'react'
 import React from 'react'
 
@@ -149,11 +149,13 @@ const GlbModelInner = ({
       ;(obj as Object3D).receiveShadow = receiveShadow
 
       // Apply opacity if provided and the object has a material
-      const object = obj as any
+      const object = obj as Object3D & {
+        material?: Material | Material[]
+      }
       if (object.material && opacity !== 1.0) {
         // If a material is an array, handle each material
         if (Array.isArray(object.material)) {
-          object.material.forEach((mat: any) => {
+          object.material.forEach((mat: Material) => {
             mat.transparent = opacity < 1.0
             mat.opacity = opacity
           })
