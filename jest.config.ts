@@ -12,7 +12,7 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/apps/web/$1',
-    '^@geocaching/glb-model$': '<rootDir>/packages/glb-model/src'
+    '^@geocaching/glb-model/(.*)$': '<rootDir>/packages/glb-model/src/$1'
   }
 }
 
