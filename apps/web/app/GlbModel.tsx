@@ -177,7 +177,7 @@ const GlbModelInner = ({
   return (
     <group position={position} rotation={rotation} scale={scale}>
       <primitive object={scene as Group} />
-      {htmlContent && <Html>{htmlContent}</Html>}
+      {htmlContent != null && <Html>{htmlContent}</Html>}
     </group>
   )
 }
