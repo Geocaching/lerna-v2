@@ -40,15 +40,20 @@ test('renders canvas with GLB model', () => {
 })
 
 test('renders provided html content', () => {
+  const htmlElement = <div data-testid='html-node'>inside</div>
   const { container } = render(
     <Canvas>
       <GlbModel
         url='/3d-models/rover/rover-body.glb'
-        htmlContent={<div data-testid='html-node'>inside</div>}
+        htmlContent={htmlElement}
       />
     </Canvas>
   )
+
   expect(container.querySelector('canvas')).toBeTruthy()
+
   const drei = require('@react-three/drei')
-  expect(drei.Html).toHaveBeenCalled()
+  const firstCall = (drei.Html as jest.Mock).mock.calls[0][0]
+  expect(firstCall).toEqual(expect.objectContaining({ children: htmlElement }))
+  expect(container.querySelector('[data-testid="html-node"]')).toBeTruthy()
 })
