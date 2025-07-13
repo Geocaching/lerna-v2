@@ -1,28 +1,30 @@
-import { render, screen } from '@testing-library/react'
-import React from 'react'
-import { mock, test, expect } from 'bun:test'
-
-test('renders promo canvas', async () => {
-  mock.module('@react-three/drei', () => ({
+jest.mock('@react-three/drei', () => {
+  const React = require('react')
+  const { Group } = require('three')
+  return {
     Stars: () => null,
     SpotLight: () => null,
-    useGLTF: () => ({ scene: new (require('three').Group)() })
-  }))
-  mock.module('@react-three/postprocessing', () => ({
-    EffectComposer: ({ children }: { children: React.ReactNode }) => (
-      <>{children}</>
-    ),
-    Bloom: () => null
-  }))
-  mock.module('@react-three/drei/core/Sky', () => ({
-    Sky: () => null
-  }))
-  mock.module('@react-three/drei/core/Stars', () => ({
-    Stars: () => null
-  }))
-  const { PerseverancePromo } = await import(
-    '../../../../app/promos/perseverance/page?test=' + Math.random()
-  )
+    useGLTF: () => ({ scene: new Group() })
+  }
+})
+jest.mock('@react-three/postprocessing', () => ({
+  EffectComposer: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
+  Bloom: () => null
+}))
+jest.mock('@react-three/drei/core/Sky', () => ({
+  Sky: () => null
+}))
+jest.mock('@react-three/drei/core/Stars', () => ({
+  Stars: () => null
+}))
+
+import { render, screen } from '@testing-library/react'
+import React from 'react'
+import PerseverancePromo from '../../../../app/promos/perseverance/page'
+
+test('renders promo canvas', () => {
   const { container } = render(<PerseverancePromo />)
   expect(screen.getByTestId('rover-explorer')).toBeInTheDocument()
   expect(container.querySelector('canvas')).toBeTruthy()

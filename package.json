@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "lerna run lint",
     "prepare": "husky || true",
-    "test": "bun test --preload ./test/setup.ts"
+    "test": "jest"
   },
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,json}": "prettier --write",
@@ -26,9 +26,12 @@
     "@types/jest": "^30.0.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
     "jsdom": "^26.1.0",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "sort-package-json": "^3.4.0"
+    "sort-package-json": "^3.4.0",
+    "ts-jest": "^29.4.0"
   }
 }
