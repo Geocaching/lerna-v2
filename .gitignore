@@ -39,3 +39,6 @@ yarn.lock
 bunfig.toml
 .bun/
 bun-debug.log*
+dist/
+*.tsbuildinfo
+.rollup.cache/
