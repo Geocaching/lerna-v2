@@ -21,10 +21,20 @@ interface GlbModelProps {
    */
   onLoad?: () => void
   /**
+   * Opacity of the model (0.0 to 1.0)
+   * @default 1.0
+   */
+  opacity?: number
+  /**
    * Position of the model in the scene as [x, y, z] coordinates
    * @default [0, 0, 0]
    */
   position?: [number, number, number]
+  /**
+   * Enable or disable shadow receiving for all meshes in the model
+   * @default false
+   */
+  receiveShadow?: boolean
   /**
    * Rotation of the model in radians as [x, y, z] Euler angles
    * @default [0, 0, 0]
@@ -39,11 +49,6 @@ interface GlbModelProps {
    * Path to the .glb file relative to the public directory
    */
   url: string
-  /**
-   * Opacity of the model (0.0 to 1.0)
-   * @default 1.0
-   */
-  opacity?: number
 }
 
 /**
@@ -120,6 +125,7 @@ class ModelErrorBoundary extends React.Component<
  * @param props.rotation - 3D rotation of the model in radians [x, y, z]
  * @param props.scale - Uniform scale factor for the model
  * @param props.castShadow - Whether the model should cast shadows
+ * @param props.receiveShadow - Whether the model should receive shadows
  * @param props.opacity - Opacity of the model (0.0 to 1.0)
  * @param props.onLoad - Callback function invoked after successful model loading
  * @returns React component that renders the 3D model
@@ -130,6 +136,7 @@ const GlbModelInner = ({
   rotation = [0, 0, 0],
   scale = 1,
   castShadow = false,
+  receiveShadow = false,
   opacity = 1.0,
   onLoad
 }: Omit<GlbModelProps, 'onError'>) => {
@@ -137,8 +144,9 @@ const GlbModelInner = ({
 
   useLayoutEffect(() => {
     scene.traverse(obj => {
-      // Apply shadow casting
+      // Apply shadow casting and receiving
       ;(obj as Object3D).castShadow = castShadow
+      ;(obj as Object3D).receiveShadow = receiveShadow
 
       // Apply opacity if provided and the object has a material
       const object = obj as any
@@ -157,7 +165,7 @@ const GlbModelInner = ({
       }
     })
     onLoad?.()
-  }, [scene, castShadow, opacity, onLoad])
+  }, [scene, castShadow, receiveShadow, opacity, onLoad])
 
   return (
     <group position={position} rotation={rotation} scale={scale}>

@@ -23,7 +23,7 @@ export const PerseverancePromo = () => (
         camera={{ fov: 15, position: [-9, 0.5, 8] }}
         className={'size-full'}
       >
-        <ambientLight intensity={0.8} castShadow />
+        <ambientLight intensity={0.8} />
         <pointLight
           position={[-20, 10, 10]}
           color={'#f5dac1'}
@@ -36,17 +36,6 @@ export const PerseverancePromo = () => (
           color={'#fab673'}
           intensity={450}
           castShadow
-        />
-        <SpotLight
-          position={[-7, 2, 8]}
-          angle={0.5}
-          penumbra={0.5}
-          intensity={1.5}
-          distance={20}
-          color='#ffffff'
-          castShadow
-          attenuation={5}
-          anglePower={5}
         />
         <Sky
           distance={140}
@@ -67,9 +56,17 @@ export const PerseverancePromo = () => (
         </Suspense>
         <Suspense fallback={null}>
           <GlbModel
+            url='http://localhost:3000/3d-models/rover/rover-cam.glb'
+            position={[-0.42243, 1.18187, 0.85338]}
+            castShadow
+          />
+        </Suspense>
+        <Suspense fallback={null}>
+          <GlbModel
             url='http://localhost:3000/3d-models/rover/rover-scenery.glb'
             position={[0, 0.4, 0]}
             rotation={[0, 100, 0]}
+            receiveShadow
           />
         </Suspense>
         <EffectComposer>
