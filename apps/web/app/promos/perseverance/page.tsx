@@ -1,5 +1,5 @@
 'use client'
-import { Stars, SpotLight } from '@react-three/drei'
+import { Stars } from '@react-three/drei/core/Stars'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
