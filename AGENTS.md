@@ -10,6 +10,7 @@ Run `bun install` at the repository root to install dependencies.
 
 - **Tests**: execute `bun run test` to run the test suite. The command preloads `test/setup.ts`.
 - **Linting**: execute `bun run lint` for lint checks.
+- **Type Checking**: run `bun x tsc -p apps/web/tsconfig.json --noEmit` to verify TypeScript types.
 - Husky hooks automatically run tests and lint-staged on commit.
 - When adding or updating server or client code in the Next.js project (`apps/web`), add or update corresponding unit tests.
 

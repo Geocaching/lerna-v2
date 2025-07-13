@@ -2,6 +2,10 @@
 
 import { JSDOM } from 'jsdom'
 import '@testing-library/jest-dom'
+import { expect } from 'bun:test'
+import * as matchers from '@testing-library/jest-dom/matchers'
+
+expect.extend(matchers)
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
   url: 'http://localhost'
