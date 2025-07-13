@@ -18,7 +18,7 @@
         "name": "next"
       }
     ],
-    "types": ["@types/bun", "@types/jest", "@testing-library/jest-dom"],
+    "types": ["bun", "jest", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./*"],
       "@/promos/*": ["./app/promos/*"]
