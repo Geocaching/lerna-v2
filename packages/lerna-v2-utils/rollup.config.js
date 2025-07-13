@@ -9,5 +9,5 @@ export default {
       sourcemap: true
     }
   ],
-  plugins: [typescript({ tsconfig: './tsconfig.json' })]
+  plugins: [typescript()]
 }
