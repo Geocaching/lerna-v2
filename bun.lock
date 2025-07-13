@@ -62,9 +62,6 @@
     "packages/lerna-v2-utils": {
       "name": "@geocaching/lerna-v2-utils",
       "version": "0.1.0",
-      "devDependencies": {
-        "typescript": "^5.0.0",
-      },
     },
   },
   "packages": {
