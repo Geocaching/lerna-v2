@@ -2,13 +2,13 @@
 
 import '@testing-library/jest-dom'
 
-// jsdom requires TextEncoder/TextDecoder in global scope before importing jsdom
+// jsdom requires TextEncoder/TextDecoder in a global scope before importing jsdom
 ;(globalThis as any).TextEncoder =
   (globalThis as any).TextEncoder || require('util').TextEncoder
 ;(globalThis as any).TextDecoder =
   (globalThis as any).TextDecoder || require('util').TextDecoder
 
-const { JSDOM } = require('jsdom')
+import { JSDOM } from 'jsdom'
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body></body></html>', {
   url: 'http://localhost'
