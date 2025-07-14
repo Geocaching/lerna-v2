@@ -4,7 +4,7 @@
   "private": true,
   "exports": {
     "./rollup.config": {
-      "default": "./rollup.config.mjs",
+      "import": "./rollup.config.mjs",
       "types": "./rollup.config.d.ts"
     },
     "./package.json": "./package.json"
