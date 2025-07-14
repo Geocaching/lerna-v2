@@ -7,6 +7,9 @@
   "scripts": {
     "build": "rollup -c"
   },
+  "devDependencies": {
+    "@geocaching/lerna-v2-utils": "*"
+  },
   "peerDependencies": {
     "@react-three/drei": "^10.5.0",
     "@react-three/fiber": "^9.2.0",
