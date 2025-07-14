@@ -1,17 +1,16 @@
 {
   "name": "@geocaching/lerna-v2-utils",
   "version": "0.1.0",
+  "private": true,
   "exports": {
     "./rollup.config": {
-      "default": "./rollup.config.js",
+      "default": "./rollup.config.mjs",
       "types": "./rollup.config.d.ts"
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "rollup -c"
-  }
+  "files": [
+    "rollup.config.mjs",
+    "rollup.config.d.ts"
+  ]
 }
