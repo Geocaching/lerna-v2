@@ -19,5 +19,9 @@ export default {
     }
   ],
   external: id => !id.startsWith('.') && !path.isAbsolute(id),
-  plugins: [typescript(), nodeResolve(), commonjs()]
+  plugins: [
+    typescript({ outputToFilesystem: false }),
+    nodeResolve(),
+    commonjs()
+  ]
 }
