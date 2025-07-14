@@ -5,7 +5,8 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "message": "ci: publish"
+      "message": "ci: publish",
+      "access": "restricted"
     },
     "version": {
       "conventionalCommits": true,
