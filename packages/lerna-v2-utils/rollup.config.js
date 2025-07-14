@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript'
+import { terser } from 'rollup-plugin-terser'
 
 export default {
   input: 'src/index.ts',
@@ -9,5 +10,5 @@ export default {
       sourcemap: true
     }
   ],
-  plugins: [typescript({ outputToFilesystem: false })]
+  plugins: [typescript({ outputToFilesystem: false }), terser()]
 }
