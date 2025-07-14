@@ -5,8 +5,12 @@
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepare": "bun run build"
   },
   "devDependencies": {
     "@geocaching/lerna-v2-utils": "*"
