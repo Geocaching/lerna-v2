@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
+import { terser } from 'rollup-plugin-terser'
 import path from 'path'
 
 export default {
@@ -22,6 +23,7 @@ export default {
   plugins: [
     typescript({ outputToFilesystem: false }),
     nodeResolve(),
-    commonjs()
+    commonjs(),
+    terser()
   ]
 }
