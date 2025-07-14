@@ -1,4 +1,3 @@
-'use client'
 import { Html, useGLTF } from '@react-three/drei'
 import { Group, Object3D, Material } from 'three'
 import { useLayoutEffect } from 'react'
