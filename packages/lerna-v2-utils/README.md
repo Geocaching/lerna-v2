@@ -2,8 +2,10 @@
 
 Utility functions used across the monorepo.
 
-This package also contains a base Rollup configuration that other packages can
-extend. The TypeScript types for the configuration are exported as well.
+This package exposes a base Rollup configuration that other packages can
+extend. The configuration lives in `rollup.config.js` and is accompanied by the
+`rollup.config.d.ts` type definition so it can be imported with full TypeScript
+support.
 
 ## Installation
 
