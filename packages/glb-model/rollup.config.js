@@ -1,10 +1,10 @@
-import typescript from '@rollup/plugin-typescript'
+import baseConfig from '@geocaching/lerna-v2-utils/rollup.config'
 import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
-import { terser } from 'rollup-plugin-terser'
 import path from 'path'
 
 export default {
+  ...baseConfig,
   input: './src/index.tsx',
   output: [
     {
@@ -21,9 +21,9 @@ export default {
   ],
   external: id => !id.startsWith('.') && !path.isAbsolute(id),
   plugins: [
-    typescript({ outputToFilesystem: false }),
+    baseConfig.plugins[0],
     nodeResolve(),
     commonjs(),
-    terser()
+    baseConfig.plugins[1]
   ]
 }
