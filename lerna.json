@@ -1,5 +1,15 @@
 {
-  "version": "0.0.0",
+  "version": "independent",
   "npmClient": "bun",
-  "packages": ["packages/*", "apps/*"]
+  "packages": ["packages/*", "apps/*"],
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "message": "ci: publish"
+    },
+    "version": {
+      "conventionalCommits": true,
+      "message": "ci: version"
+    }
+  }
 }
