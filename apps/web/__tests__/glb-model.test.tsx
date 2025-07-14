@@ -22,7 +22,6 @@ jest.mock('@react-three/fiber', () => {
 import { render } from '@testing-library/react'
 import React from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Group } from 'three'
 import GlbModel from '@geocaching/glb-model'
 
 test('renders canvas with GLB model', () => {
