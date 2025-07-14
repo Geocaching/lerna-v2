@@ -9,8 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "prepare": "bun run build"
+    "build": "rollup -c"
   },
   "devDependencies": {
     "@geocaching/lerna-v2-utils": "*"
