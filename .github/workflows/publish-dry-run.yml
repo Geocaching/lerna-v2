@@ -38,4 +38,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_REGISTRY: https://registry.npmjs.org
-        run: bun x lerna publish from-package --yes --no-private --loglevel info --ignore-scripts
+        run: bun x lerna publish from-package --yes --no-private --loglevel info --ignore-scripts --registry https://registry.npmjs.org
