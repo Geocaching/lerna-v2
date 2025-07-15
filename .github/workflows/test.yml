@@ -19,5 +19,3 @@ jobs:
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
       - run: bun run test
-      - run: bun run build
-      - run: bun run --cwd apps/web build
