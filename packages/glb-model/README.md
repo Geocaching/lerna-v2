@@ -27,4 +27,17 @@ export default function Example() {
 }
 ```
 
-The component accepts props for positioning, scaling, shadow options and more. Refer to the TypeScript definitions for full details.
+## Props
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `url` | `string` | – | Path to the `.glb` file relative to the public directory |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | Position of the model in the scene |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | Rotation of the model in radians |
+| `scale` | `number` | `1` | Uniform scale factor for the model |
+| `opacity` | `number` | `1.0` | Opacity of the model |
+| `castShadow` | `boolean` | `false` | Whether the model should cast shadows |
+| `receiveShadow` | `boolean` | `false` | Whether the model should receive shadows |
+| `onLoad` | `() => void` | – | Called after the model successfully loads |
+| `onError` | `(error: unknown) => void` | – | Called if an error occurs while loading |
+| `htmlContent` | `React.ReactNode` | – | Optional HTML content rendered inside the model |
