@@ -37,4 +37,5 @@ jobs:
         if: ${{ steps.detect_changes.outputs.count != '0' }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
         run: bun x lerna publish from-package --yes --no-private --loglevel info --ignore-scripts
