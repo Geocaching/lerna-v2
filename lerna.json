@@ -5,7 +5,8 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "message": "ci: publish"
+      "message": "ci: publish",
+      "registry": "https://registry.npmjs.org"
     },
     "version": {
       "conventionalCommits": true,
