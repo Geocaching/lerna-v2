@@ -1,0 +1,7 @@
+{
+  "ci": {
+    "collect": {
+      "puppeteerScript": "./apps/lhci/src/login.ts"
+    }
+  }
+}

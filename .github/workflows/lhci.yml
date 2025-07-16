@@ -1,0 +1,24 @@
+name: Lighthouse CI
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: ${{ runner.os }}-bun-
+      - run: bun add -g @lhci/cli puppeteer
+      - name: Run Lighthouse CI
+        run: lhci autorun
+        env:
+          LHCI_GC_ACCOUNT: ${{ secrets.LHCI_GC_ACCOUNT }}
+          LHCI_GC_PASS: ${{ secrets.LHCI_GC_PASS }}
