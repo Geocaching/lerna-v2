@@ -17,7 +17,7 @@ async function login() {
       'LHCI_GC_ACCOUNT and LHCI_GC_PASS environment variables are required'
     )
     await browser.close()
-    return
+    process.exit(1)
   }
 
   await page.type('#UsernameOrEmail', LHCI_GC_ACCOUNT)
