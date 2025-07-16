@@ -3,7 +3,5 @@
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
-  "devDependencies": {
-    "puppeteer": "^20.7.4"
-  }
+  "devDependencies": {}
 }
