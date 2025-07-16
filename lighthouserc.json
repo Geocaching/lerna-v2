@@ -1,7 +1,8 @@
 {
   "ci": {
     "collect": {
-      "puppeteerScript": "./apps/lhci/src/login.ts"
+      "puppeteerScript": "./apps/lhci/src/login.ts",
+      "staticDistDir": "./apps/lhci/out"
     }
   }
 }
