@@ -4,6 +4,6 @@
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
-    "puppeteer": "*"
+    "puppeteer": "^20.7.4"
   }
 }
