@@ -19,5 +19,8 @@
     "@react-three/fiber": "^9.2.0",
     "react": "^19.1.0",
     "three": "^0.178.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
