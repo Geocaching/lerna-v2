@@ -13,5 +13,6 @@
       "exact": true,
       "message": "ci: version"
     }
-  }
+  },
+  "ignoreChanges": ["**/rollup.config.mjs"]
 }
