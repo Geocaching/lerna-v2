@@ -48,6 +48,9 @@ jobs:
           git reset --hard origin/main
           echo "Performed hard reset to ensure clean branch state"
 
+      - name: Set npm registry to official npm registry
+        run: npm config set registry https://registry.npmjs.org/
+
       - name: List npm configuration
         run: npm config list
 

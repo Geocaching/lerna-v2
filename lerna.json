@@ -1,6 +1,6 @@
 {
   "version": "independent",
-  "npmClient": "bun",
+  "npmClient": "npm",
   "packages": ["packages/*", "apps/*"],
   "command": {
     "publish": {
