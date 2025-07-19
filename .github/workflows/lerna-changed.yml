@@ -36,9 +36,10 @@ jobs:
             cat error.log
             exit 1
           fi
-          echo "packages=$changed" >> "$GITHUB_OUTPUT"
+          is_empty=$(echo "$changed" | bun run --eval "console.log(JSON.parse(process.argv[1]).length === 0)" 2>/dev/null)
+          echo "packages=$is_empty" >> "$GITHUB_OUTPUT"
 
       - name: Dry run publish
-        if: steps.changes.outputs.packages != '[]'
+        if: steps.changes.outputs.packages == 'false'
         run: bun x lerna publish --yes --no-private --dry-run
 
