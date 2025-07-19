@@ -25,8 +25,17 @@ jobs:
         run: |
           latest_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
           echo "Latest tag: $latest_tag"
-          changed=$(bun x lerna changed --json || echo "[]")
-          echo "$changed"
+          changed=$(bun x lerna changed --json 2>error.log)
+          if [ $? -eq 0 ]; then
+            echo "$changed"
+          elif grep -q "No changed packages found" error.log; then
+            echo "[]"
+            changed="[]"
+          else
+            echo "Error running 'lerna changed':"
+            cat error.log
+            exit 1
+          fi
           echo "packages=$changed" >> "$GITHUB_OUTPUT"
 
       - name: Dry run publish
