@@ -48,9 +48,14 @@ jobs:
           git reset --hard origin/main
           echo "Performed hard reset to ensure clean branch state"
 
-      - name: Set npm registry to official npm registry
+      - name: Configure npm for publish
         if: steps.changes.outputs.has_changes == 'true'
-        run: npm config set registry https://registry.npmjs.org/
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm set registry https://registry.npmjs.org/
+          npm set scope @geocaching
+          npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
 
       - name: Dry run publish
         if: steps.changes.outputs.has_changes == 'true'
