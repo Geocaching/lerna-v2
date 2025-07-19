@@ -39,8 +39,8 @@ jobs:
             exit 1
           fi
           # Determine whether any packages changed using jq for reliability
-          is_empty=$(echo "$changed" | jq 'length == 0')
-          echo "packages=$is_empty" >> "$GITHUB_OUTPUT"
+          has_changes=$(echo "$changed" | jq 'length == 0')
+          echo "packages=$has_changes" >> "$GITHUB_OUTPUT"
 
       - name: Dry run publish
         if: steps.changes.outputs.packages == 'false'
