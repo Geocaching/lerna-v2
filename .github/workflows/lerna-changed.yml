@@ -21,7 +21,7 @@ jobs:
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
       - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+        run: which jq || (sudo apt-get update && sudo apt-get install -y jq)
       - name: Check for changed packages
         id: changes
         run: |
