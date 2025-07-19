@@ -20,6 +20,8 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
       - name: Check for changed packages
         id: changes
         run: |
@@ -36,7 +38,8 @@ jobs:
             cat error.log
             exit 1
           fi
-          is_empty=$(echo "$changed" | bun run --eval "console.log(JSON.parse(process.argv[1]).length === 0)" 2>/dev/null)
+          # Determine whether any packages changed using jq for reliability
+          is_empty=$(echo "$changed" | jq 'length == 0')
           echo "packages=$is_empty" >> "$GITHUB_OUTPUT"
 
       - name: Dry run publish
