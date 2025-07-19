@@ -21,8 +21,15 @@ jobs:
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
       - name: Check for changed packages
+        id: changes
         run: |
           latest_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
           echo "Latest tag: $latest_tag"
-          bunx lerna changed --since "$latest_tag"
+          changed=$(bun x lerna changed --json || echo "[]")
+          echo "$changed"
+          echo "packages=$changed" >> "$GITHUB_OUTPUT"
+
+      - name: Dry run publish
+        if: steps.changes.outputs.packages != '[]'
+        run: bun x lerna publish --yes --no-private --dry-run
 
