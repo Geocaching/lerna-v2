@@ -21,8 +21,25 @@ jobs:
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
       - name: Check for changed packages
+        id: changes
         run: |
           latest_tag=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1))
           echo "Latest tag: $latest_tag"
-          bunx lerna changed --since "$latest_tag"
+          changed=$(bun x lerna changed --json 2>error.log)
+          if [ $? -eq 0 ]; then
+            echo "$changed"
+          elif grep -q "No changed packages found" error.log; then
+            echo "[]"
+            changed="[]"
+          else
+            echo "Error running 'lerna changed':"
+            cat error.log
+            exit 1
+          fi
+          is_empty=$(echo "$changed" | bun run --eval "console.log(JSON.parse(process.argv[1]).length === 0)" 2>/dev/null)
+          echo "packages=$is_empty" >> "$GITHUB_OUTPUT"
+
+      - name: Dry run publish
+        if: steps.changes.outputs.packages == 'false'
+        run: bun x lerna publish --yes --no-private --dry-run
 
