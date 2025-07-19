@@ -42,8 +42,13 @@ jobs:
           has_changes=$(echo "$changed" | jq 'length == 0')
           echo "packages=$has_changes" >> "$GITHUB_OUTPUT"
 
+      - name: Clean branch with hard reset
+        run: |
+          git fetch origin
+          git reset --hard origin/main
+          echo "Performed hard reset to ensure clean branch state"
+
       - name: Dry run publish
         env:
           NPM_CONFIG_DRY_RUN: 'true'
         run: bun x lerna publish from-package --yes --no-private --loglevel info
-
