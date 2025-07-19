@@ -48,6 +48,9 @@ jobs:
           git reset --hard origin/main
           echo "Performed hard reset to ensure clean branch state"
 
+      - name: List npm configuration
+        run: npm config list
+
       - name: Dry run publish
         env:
           NPM_CONFIG_DRY_RUN: 'true'
