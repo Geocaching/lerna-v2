@@ -44,5 +44,5 @@ jobs:
 
       - name: Dry run publish
         if: steps.changes.outputs.packages == 'false'
-        run: bun x lerna publish --yes --no-private --dryRun
+        run: bun x lerna publish --dry-run --no-private
 
