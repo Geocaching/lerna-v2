@@ -1,4 +1,4 @@
-name: Lerna Changed
+name: Lerna Publish Check
 on:
   push:
     branches:
@@ -44,5 +44,5 @@ jobs:
 
       - name: Dry run publish
         if: steps.changes.outputs.packages == 'false'
-        run: bun x lerna publish --yes --no-private --dry-run
+        run: bun x lerna publish --yes --no-private --dryRun
 
