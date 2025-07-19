@@ -1,12 +1,11 @@
 {
   "version": "independent",
-  "npmClient": "npm",
+  "npmClient": "bun",
   "packages": ["packages/*", "apps/*"],
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "message": "ci: publish",
-      "registry": "https://registry.npmjs.org"
+      "message": "ci: publish"
     },
     "version": {
       "conventionalCommits": true,
