@@ -25,6 +25,12 @@ interface GlbModelProps {
    */
   opacity?: number
   /**
+   * Custom material to apply to all meshes in the model. Supports built-in
+   * three.js materials as well as materials created with `shaderMaterial` or
+   * `RawShaderMaterial`.
+   */
+  material?: Material
+  /**
    * Position of the model in the scene as [x, y, z] coordinates
    * @default [0, 0, 0]
    */
@@ -130,6 +136,8 @@ class ModelErrorBoundary extends React.Component<
  * @param props.castShadow - Whether the model should cast shadows
  * @param props.receiveShadow - Whether the model should receive shadows
  * @param props.opacity - Opacity of the model (0.0 to 1.0)
+ * @param props.material - Material applied to all meshes in the model
+ * @param props.htmlContent - Optional HTML content rendered inside the model
  * @param props.onLoad - Callback function invoked after successful model loading
  * @returns React component that renders the 3D model
  */
@@ -141,6 +149,7 @@ const GlbModelInner = ({
   castShadow = false,
   receiveShadow = false,
   opacity = 1.0,
+  material,
   htmlContent,
   onLoad
 }: Omit<GlbModelProps, 'onError'>) => {
@@ -156,22 +165,29 @@ const GlbModelInner = ({
       const object = obj as Object3D & {
         material?: Material | Material[]
       }
-      if (object.material && opacity !== 1.0) {
-        // If a material is an array, handle each material
-        if (Array.isArray(object.material)) {
-          object.material.forEach((mat: Material) => {
+      if (object.material) {
+        // Override material if one was provided
+        if (material) {
+          if (Array.isArray(object.material)) {
+            object.material = object.material.map(() => material)
+          } else {
+            object.material = material
+          }
+        }
+
+        if (opacity !== 1.0) {
+          const mats = Array.isArray(object.material)
+            ? object.material
+            : [object.material]
+          mats.forEach((mat: Material) => {
             mat.transparent = opacity < 1.0
             mat.opacity = opacity
           })
-        } else {
-          // Handle single material
-          object.material.transparent = opacity < 1.0
-          object.material.opacity = opacity
         }
       }
     })
     onLoad?.()
-  }, [scene, castShadow, receiveShadow, opacity, onLoad])
+  }, [scene, castShadow, receiveShadow, opacity, material, onLoad])
 
   return (
     <group position={position} rotation={rotation} scale={scale}>
@@ -196,6 +212,7 @@ const GlbModelInner = ({
  *   position={[1, 0, 2]}
  *   scale={0.5}
  *   castShadow={true}
+ *   material={new MeshBasicMaterial()}
  *   onLoad={() => console.log("Model loaded")}
  *   onError={(e) => console.error("Model failed to load", e)}
  * />
