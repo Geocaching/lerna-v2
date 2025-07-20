@@ -79,5 +79,5 @@ jobs:
 
       - name: Push git tags
         if: steps.changes.outputs.has_changes == 'true'
-        run: git push --follow-tags origin HEAD:main
+        run: git push --follow-tags origin HEAD:${{ github.ref_name }}
 
