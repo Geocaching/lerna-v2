@@ -68,7 +68,7 @@ jobs:
         id: bump
         if: steps.changes.outputs.has_changes == 'true'
         run: |
-          bump=$(npx conventional-recommended-bump -p angular)
+          bump=$(bun x conventional-recommended-bump -p angular)
           echo "release=$bump" >> "$GITHUB_OUTPUT"
 
       - name: Publish packages
