@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Geocaching/lerna-v2/compare/@geocaching/glb-model@0.2.1...@geocaching/glb-model@0.3.0) (2025-07-17)
+
+### Features
+
+- add support for custom materials including built-in shaders, `shaderMaterial`, and `RawShaderMaterial`
+
 ## [0.2.1](https://github.com/Geocaching/lerna-v2/compare/@geocaching/glb-model@0.2.0...@geocaching/glb-model@0.2.1) (2025-07-16)
 
 **Note:** Version bump only for package @geocaching/glb-model
