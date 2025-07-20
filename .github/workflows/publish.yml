@@ -69,4 +69,4 @@ jobs:
         if: steps.changes.outputs.has_changes == 'true' && steps.dry_run.outcome == 'success'
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: bun x lerna publish from-package --yes --no-private --ignore-scripts --loglevel info
+        run: bun x lerna publish from-package --yes --no-private --loglevel info
