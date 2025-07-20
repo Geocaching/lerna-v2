@@ -1,12 +1,16 @@
 {
-  "extends": "../../apps/web/tsconfig.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
     "target": "ES5",
     "declaration": true,
     "declarationDir": "dist",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"]
 }

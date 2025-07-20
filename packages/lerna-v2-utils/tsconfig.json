@@ -1,11 +1,10 @@
 {
-  "extends": "../../apps/web/tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
     "target": "ES5",
+    "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "dist"
+    "skipLibCheck": true,
+    "strict": true
   },
   "include": ["src/**/*"]
 }
