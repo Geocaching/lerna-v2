@@ -22,7 +22,7 @@ jest.mock('@react-three/drei/core/Stars', () => ({
 
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import PerseverancePromo from '../../../../app/promos/perseverance/page'
+import PerseverancePromo from '@/app/promos/perseverance/page'
 
 test('renders promo canvas', () => {
   const { container } = render(<PerseverancePromo />)
