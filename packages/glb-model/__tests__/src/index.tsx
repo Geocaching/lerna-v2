@@ -1,3 +1,10 @@
+import { render, waitFor } from '@testing-library/react'
+import * as React from 'react'
+import { Canvas } from '@react-three/fiber'
+import GlbModel from '@geocaching/glb-model'
+import { RawShaderMaterial, MeshBasicMaterial } from 'three'
+import { shaderMaterial } from '@react-three/drei'
+
 jest.mock('@react-three/drei', () => {
   const React = require('react')
   const { Group, Mesh, BoxGeometry, MeshBasicMaterial } = require('three')
@@ -30,13 +37,6 @@ jest.mock('@react-three/fiber', () => {
     )
   }
 })
-
-import { render, waitFor } from '@testing-library/react'
-import React from 'react'
-import { Canvas } from '@react-three/fiber'
-import GlbModel from '@geocaching/glb-model'
-import { RawShaderMaterial, MeshBasicMaterial } from 'three'
-import { shaderMaterial } from '@react-three/drei'
 
 test('renders canvas with GLB model', () => {
   const { container } = render(
