@@ -20,8 +20,10 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: ${{ runner.os }}-bun-
       - run: bun install
+
       - name: Install jq
         run: which jq || (sudo apt-get update && sudo apt-get install -y jq)
+
       - name: Check for changed packages
         id: changes
         run: |
@@ -57,6 +59,12 @@ jobs:
           npm set registry https://registry.npmjs.org/
           npm set scope @geocaching
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+
+      - name: Configure git for publish
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Determine semver bump
         id: bump
