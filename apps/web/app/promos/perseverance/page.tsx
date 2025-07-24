@@ -49,21 +49,18 @@ export const PerseverancePromo = () => (
         />
         <Stars />
         <Suspense fallback={null}>
-          <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-body.glb'
-            castShadow
-          />
+          <GlbModel url='/3d-models/rover/rover-body.glb' castShadow />
         </Suspense>
         <Suspense fallback={null}>
           <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-cam.glb'
+            url='/3d-models/rover/rover-cam.glb'
             position={[-0.42243, 1.18187, 0.85338]}
             castShadow
           />
         </Suspense>
         <Suspense fallback={null}>
           <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-scenery.glb'
+            url='/3d-models/rover/rover-scenery.glb'
             position={[0, 0.4, 0]}
             rotation={[0, 100, 0]}
             receiveShadow
