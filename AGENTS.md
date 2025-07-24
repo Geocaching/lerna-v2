@@ -47,23 +47,3 @@ Please keep this documentation organized by categories (UI components, API inter
 ### Known Issues
 
 <!-- Add documented issues below this line following the example format -->
-### Issue: React Three Fiber tags logged errors during tests
-
-- **Location**: test/setup.ts
-- **Context**: Running Jest tests with a mocked Canvas from `@react-three/fiber`
-- **Problem**: JSX tags `<group>` and `<primitive>` triggered console errors
-  because they were treated as unknown DOM elements when rendered in tests.
-- **Solution**: Mock `console.error` in `test/setup.ts` during each test and
-  restore it afterward, filtering only the specific warnings about `<group>` and
-  `<primitive>` so legitimate errors still surface.
-- **Prevention**: When mocking `@react-three/fiber` components, also suppress or
-  handle logs from custom JSX tags to keep test output clean without hiding real
-  issues.
-
-### Issue: `bun install` failed when building `@geocaching/glb-model`
-
-- **Location**: `packages/glb-model/tsconfig.json`, `packages/lerna-v2-utils/tsconfig.json`
-- **Context**: Running `bun install` triggered the `prepare` script for `@geocaching/glb-model`. The TypeScript configuration extended `../../apps/web/tsconfig.json`, which does not exist when the package is installed in `node_modules`.
-- **Problem**: Rollup's TypeScript plugin threw `TS5083: Cannot read file 'node_modules/apps/web/tsconfig.json'` during the build step.
-- **Solution**: Removed the `extends` property from both tsconfig files and added local compiler options so the packages can build independently.
-- **Prevention**: Avoid using repo-relative paths in package configuration files that run during installation.
