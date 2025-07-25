@@ -1,6 +1,6 @@
 {
   "name": "@geocaching/glb-model",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "license": "UNLICENSED",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
