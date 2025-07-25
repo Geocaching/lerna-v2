@@ -3,7 +3,7 @@ import { Stars } from '@react-three/drei/core/Stars'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import GlbModel from '@geocaching/glb-model'
+import GlbModel from '@/packages/glb-model/src'
 import { Sky } from '@react-three/drei/core/Sky'
 
 export const dynamic = 'force-static'

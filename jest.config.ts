@@ -2,6 +2,7 @@ import type { Config } from 'jest'
 
 const config: Config = {
   moduleNameMapper: {
+    '^@/packages/(.*)$': '<rootDir>/packages/$1',
     '^@/(.*)$': '<rootDir>/apps/web/$1',
     '^@/app/(.*)$': '<rootDir>/apps/web/app/$1',
     '^@geocaching/glb-model$': '<rootDir>/packages/glb-model/src'
