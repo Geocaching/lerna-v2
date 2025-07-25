@@ -23,6 +23,7 @@
       "@/*": ["./*"],
       "@/app/*": ["./app/*"],
       "@/promos/*": ["./app/promos/*"],
+      "@/packages/*": ["../../packages/*"],
       "@geocaching/glb-model": ["../../packages/glb-model/src"]
     }
   },
