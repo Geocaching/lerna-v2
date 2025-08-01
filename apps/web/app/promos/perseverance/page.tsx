@@ -3,7 +3,7 @@ import { Stars } from '@react-three/drei/core/Stars'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import GlbModel from '@geocaching/glb-model'
+import GlbModel from '@/packages/glb-model/src'
 import { Sky } from '@react-three/drei/core/Sky'
 
 export const dynamic = 'force-static'
@@ -49,21 +49,18 @@ export const PerseverancePromo = () => (
         />
         <Stars />
         <Suspense fallback={null}>
-          <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-body.glb'
-            castShadow
-          />
+          <GlbModel url='/3d-models/rover/rover-body.glb' castShadow />
         </Suspense>
         <Suspense fallback={null}>
           <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-cam.glb'
+            url='/3d-models/rover/rover-cam.glb'
             position={[-0.42243, 1.18187, 0.85338]}
             castShadow
           />
         </Suspense>
         <Suspense fallback={null}>
           <GlbModel
-            url='http://localhost:3000/3d-models/rover/rover-scenery.glb'
+            url='/3d-models/rover/rover-scenery.glb'
             position={[0, 0.4, 0]}
             rotation={[0, 100, 0]}
             receiveShadow
