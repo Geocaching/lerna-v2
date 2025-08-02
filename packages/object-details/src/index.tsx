@@ -243,7 +243,7 @@ const ValueRenderer: React.FC<{
   value: any
   level?: number
   maxDepth?: number
-}> = ({ value, level = 0, maxDepth = Infinity }) => {
+}> = ({ value }) => {
   // Handle null and undefined
   if (value === null) {
     return (
@@ -313,7 +313,6 @@ const ValueRenderer: React.FC<{
 const ObjectDetails: React.FC<ObjectDetailsProps> = ({
   data,
   title,
-  initiallyOpen = false,
   className = '',
   summaryClassName = '',
   contentClassName = '',
@@ -340,7 +339,7 @@ const ObjectDetails: React.FC<ObjectDetailsProps> = ({
   const entries = allEntries.slice(0, maxChildren)
   const hiddenCount = allEntries.length - entries.length
 
-  const isDarkMode = useDarkMode()
+  useDarkMode()
 
   return (
     <div className={`border rounded p-1 my-1 font-mono ${className}`}>
