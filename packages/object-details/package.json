@@ -1,0 +1,22 @@
+{
+  "name": "@geocaching/object-details",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "yarn build"
+  },
+  "devDependencies": {
+    "@geocaching/lerna-v2-utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0"
+  }
+}

@@ -81,6 +81,16 @@
       "name": "@geocaching/lerna-v2-utils",
       "version": "0.1.0",
     },
+    "packages/object-details": {
+      "name": "@geocaching/object-details",
+      "version": "0.1.0",
+      "devDependencies": {
+        "@geocaching/lerna-v2-utils": "workspace:*",
+      },
+      "peerDependencies": {
+        "react": "^19.1.0",
+      },
+    },
   },
   "packages": {
     "@adobe/css-tools": ["@adobe/css-tools@4.4.3", "", {}, "sha512-VQKMkwriZbaOgVCby1UDY/LDk5fIjhQicCvVPFqfe+69fWaPWydbWJ3wRt59/YzIwda1I81loas3oCoHxnqvdA=="],
@@ -238,6 +248,8 @@
     "@geocaching/glb-model": ["@geocaching/glb-model@workspace:packages/glb-model"],
 
     "@geocaching/lerna-v2-utils": ["@geocaching/lerna-v2-utils@workspace:packages/lerna-v2-utils"],
+
+    "@geocaching/object-details": ["@geocaching/object-details@workspace:packages/object-details"],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
