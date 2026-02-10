@@ -16,6 +16,9 @@
     "**/package.json": "sort-package-json"
   },
   "prettier": "@brandontom/prettier",
+  "overrides": {
+    "axios": "^1.12.0"
+  },
   "dependencies": {
     "lerna": "^8.2.3"
   },
