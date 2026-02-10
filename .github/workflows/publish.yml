@@ -1,8 +1,6 @@
 name: Lerna Publish Check
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: # disabled - manual trigger only
 
 jobs:
   changed:
