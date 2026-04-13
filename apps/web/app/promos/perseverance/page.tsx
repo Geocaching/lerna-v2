@@ -20,21 +20,21 @@ export const PerseverancePromo = () => (
       className='flex justify-center bg-size-[400px] w-full h-[468px]'
     >
       <Canvas
+        shadows
         camera={{ fov: 15, position: [-9, 0.5, 8] }}
         className={'size-full'}
       >
-        <ambientLight intensity={0.8} />
         <pointLight
           position={[-20, 10, 10]}
           color={'#f5dac1'}
-          intensity={175}
+          intensity={150}
         />
-        <pointLight position={[5, 10, 20]} color={'#fcf3bb'} intensity={175} />
-        <pointLight position={[5, 20, -10]} color={'#99cde0'} intensity={375} />
+        <pointLight position={[5, 10, 20]} color={'#fcf3bb'} intensity={150} />
+        <pointLight position={[5, 20, -10]} color={'#99cde0'} intensity={150} />
         <pointLight
           position={[10, 5, 5]}
           color={'#fab673'}
-          intensity={450}
+          intensity={100}
           castShadow
         />
         <Sky

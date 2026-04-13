@@ -1,6 +1,6 @@
 import { Html, useGLTF } from '@react-three/drei'
-import { Group, Object3D, Material } from 'three'
-import { useLayoutEffect } from 'react'
+import { Object3D, Material, Mesh } from 'three'
+import { useEffect, useRef } from 'react'
 import React from 'react'
 
 interface GlbModelProps {
@@ -154,31 +154,31 @@ const GlbModelInner = ({
   onLoad
 }: Omit<GlbModelProps, 'onError'>) => {
   const { scene } = useGLTF(url)
+  const onLoadRef = useRef(onLoad)
+  onLoadRef.current = onLoad
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     scene.traverse(obj => {
-      // Apply shadow casting and receiving
+      if (!(obj as Mesh).isMesh) return // Apply shadow casting and receiving
       ;(obj as Object3D).castShadow = castShadow
       ;(obj as Object3D).receiveShadow = receiveShadow
 
       // Apply opacity if provided and the object has a material
-      const object = obj as Object3D & {
-        material?: Material | Material[]
-      }
-      if (object.material) {
+      const mesh = obj as Mesh
+      if (mesh.material) {
         // Override material if one was provided
         if (material) {
-          if (Array.isArray(object.material)) {
-            object.material = object.material.map(() => material)
+          if (Array.isArray(mesh.material)) {
+            mesh.material = mesh.material.map(() => material)
           } else {
-            object.material = material
+            mesh.material = material
           }
         }
 
         if (opacity !== 1.0) {
-          const mats = Array.isArray(object.material)
-            ? object.material
-            : [object.material]
+          const mats = Array.isArray(mesh.material)
+            ? mesh.material
+            : [mesh.material]
           mats.forEach((mat: Material) => {
             mat.transparent = opacity < 1.0
             mat.opacity = opacity
@@ -186,12 +186,12 @@ const GlbModelInner = ({
         }
       }
     })
-    onLoad?.()
-  }, [scene, castShadow, receiveShadow, opacity, material, onLoad])
+    onLoadRef.current?.()
+  }, [scene, castShadow, receiveShadow, opacity, material])
 
   return (
     <group position={position} rotation={rotation} scale={scale}>
-      <primitive object={scene as Group} />
+      <primitive object={scene} dispose={null} />
       {htmlContent != null && <Html>{htmlContent}</Html>}
     </group>
   )
